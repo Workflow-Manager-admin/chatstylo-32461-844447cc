@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 /**
  * PUBLIC_INTERFACE
@@ -21,15 +22,6 @@ function TalkBuddyNavBar() {
     localStorage.setItem("tb-theme", theme);
   }, [theme]);
 
-  // Scroll to page anchors smoothly (if they exist)
-  const handleNav = (e, sectionId) => {
-    e.preventDefault();
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
   // Hamburger menu for mobile
   const [menuOpen, setMenuOpen] = useState(false);
   const handleHamburger = () => setMenuOpen((prev) => !prev);
@@ -40,6 +32,9 @@ function TalkBuddyNavBar() {
     window.addEventListener("resize", close);
     return () => window.removeEventListener("resize", close);
   }, []);
+
+  // For active nav highlighting
+  const location = useLocation();
 
   return (
     <>
@@ -64,8 +59,19 @@ function TalkBuddyNavBar() {
           </button>
 
           <div className={`tb-navlinks ${menuOpen ? "open" : ""}`} id="tb-navlinks">
-            <a href="#chat" onClick={e => handleNav(e, "chat")}>Chat</a>
-            <a href="#about" onClick={e => handleNav(e, "about")}>About</a>
+            <Link to="/chat" className={location.pathname === "/chat" ? "active" : ""}>Chat</Link>
+            <a href="#about" onClick={e => {
+              e.preventDefault();
+              // If not on landing page, navigate to root first and then scroll after mount.
+              if (location.pathname !== "/") {
+                window.location.href = "/#about";
+              } else {
+                const section = document.getElementById("about");
+                if (section) {
+                  section.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }
+            }}>About</a>
           </div>
 
           {/* Theme toggle */}
