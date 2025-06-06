@@ -100,12 +100,7 @@ const FEATURES = [
   },
 ];
 
-function scrollToChat() {
-  const section = document.getElementById("chat");
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-}
+import { useNavigate } from "react-router-dom";
 
 function TalkBuddyLandingPage() {
   // Detect light/dark mode from parent (body[data-tb-theme])
