@@ -64,7 +64,6 @@ function TalkBuddyNavBar() {
           </button>
 
           <div className={`tb-navlinks ${menuOpen ? "open" : ""}`} id="tb-navlinks">
-            <a href="#home" onClick={e => handleNav(e, "home")}>Home</a>
             <a href="#chat" onClick={e => handleNav(e, "chat")}>Chat</a>
             <a href="#about" onClick={e => handleNav(e, "about")}>About</a>
           </div>
