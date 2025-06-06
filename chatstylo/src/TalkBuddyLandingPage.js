@@ -101,8 +101,6 @@ const FEATURES = [
   },
 ];
 
-import { useNavigate } from "react-router-dom";
-
 function TalkBuddyLandingPage() {
   // React Router navigation
   const navigate = useNavigate();
