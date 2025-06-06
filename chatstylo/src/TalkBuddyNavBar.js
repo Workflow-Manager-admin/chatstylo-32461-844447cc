@@ -59,7 +59,80 @@ function TalkBuddyNavBar() {
           </button>
 
           <div className={`tb-navlinks ${menuOpen ? "open" : ""}`} id="tb-navlinks">
-            <Link to="/chat" className={location.pathname === "/chat" ? "active" : ""}>Chat</Link>
+            {/* Use React Router's Link for SPA navigation to /chat */}
+            <Link
+              to="/chat"
+              className={location.pathname === "/chat" ? "active" : ""}
+              style={{
+                transition: "color 0.20s, background 0.19s, box-shadow 0.13s",
+                position: 'relative',
+                borderRadius: 7,
+                padding: '3px 10px',
+                fontSize: "1.08rem",
+                fontWeight: 600,
+                letterSpacing: "0.01em",
+                textDecoration: "none",
+                color: "inherit",
+                outline: "none",
+                ...(location.pathname === "/chat"
+                  ? {
+                      background: theme === "light"
+                        ? "rgba(170,170,170,0.13)"
+                        : "rgba(80,255,236,0.063)",
+                      color: theme === "light" ? "#252531" : "#fafcfb",
+                      textDecoration:
+                        theme === "light"
+                          ? "underline wavy #868c5f 1.5px"
+                          : "underline wavy #2b9de3 1.5px",
+                    }
+                  : {}),
+              }}
+              onMouseOver={e => {
+                e.currentTarget.style.background =
+                  theme === "light"
+                    ? "rgba(170,170,170,0.13)"
+                    : "rgba(80,255,236,0.063)";
+                e.currentTarget.style.color =
+                  theme === "light" ? "#252531" : "#fafcfb";
+                e.currentTarget.style.textDecoration =
+                  theme === "light"
+                    ? "underline wavy #868c5f 1.5px"
+                    : "underline wavy #2b9de3 1.5px";
+                if (theme === "dark") {
+                  e.currentTarget.style.boxShadow =
+                    "0 0 9px 2px #87ffff44, 0 0 10px 2px #68826911";
+                  e.currentTarget.style.textShadow =
+                    "0 0 4px #fff, 0 0 7px #87ffff99";
+                }
+              }}
+              onMouseOut={e => {
+                // Reset style to default/active on mouse out
+                e.currentTarget.style.background =
+                  location.pathname === "/chat"
+                    ? theme === "light"
+                      ? "rgba(170,170,170,0.13)"
+                      : "rgba(80,255,236,0.063)"
+                    : "unset";
+                e.currentTarget.style.color =
+                  location.pathname === "/chat"
+                    ? theme === "light"
+                      ? "#252531"
+                      : "#fafcfb"
+                    : "inherit";
+                e.currentTarget.style.textDecoration =
+                  location.pathname === "/chat"
+                    ? theme === "light"
+                      ? "underline wavy #868c5f 1.5px"
+                      : "underline wavy #2b9de3 1.5px"
+                    : "none";
+                e.currentTarget.style.boxShadow = "";
+                e.currentTarget.style.textShadow = "";
+              }}
+              tabIndex={0}
+              aria-current={location.pathname === "/chat" ? "page" : undefined}
+            >
+              Chat
+            </Link>
             <a href="#about" onClick={e => {
               e.preventDefault();
               // If not on landing page, navigate to root first and then scroll after mount.
