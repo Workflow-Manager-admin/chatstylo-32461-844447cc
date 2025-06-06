@@ -103,6 +103,8 @@ const FEATURES = [
 import { useNavigate } from "react-router-dom";
 
 function TalkBuddyLandingPage() {
+  // React Router navigation
+  const navigate = useNavigate();
   // Detect light/dark mode from parent (body[data-tb-theme])
   const [theme, setTheme] = useState(() =>
     document.body.getAttribute("data-tb-theme") === "light" ? "light" : "dark"
@@ -142,7 +144,7 @@ function TalkBuddyLandingPage() {
             </p>
             <button
               className="tb-chat-btn"
-              onClick={scrollToChat}
+              onClick={() => navigate('/chat')}
               aria-label="Start chatting"
             >
               Start Chatting
