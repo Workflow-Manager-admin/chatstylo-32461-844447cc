@@ -169,7 +169,18 @@ function TalkBuddyLandingPage() {
       <footer className="tb-landing-footer">
         <span>© {new Date().getFullYear()} TalkBuddy &middot; Powered by AI</span>
         <div className="tb-footer-links">
-          <a href="#chat" onClick={e => { e.preventDefault(); scrollToChat(); }}>Chat</a>
+          <a
+            href="#chat"
+            onClick={e => {
+              e.preventDefault();
+              // If not already on landing, navigate. Otherwise, do nothing (no #chat section now).
+              if (window.location.pathname !== "/") {
+                navigate("/chat");
+              } else {
+                navigate("/chat");
+              }
+            }}
+          >Chat</a>
           <a href="#about" onClick={e => { e.preventDefault(); document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }); }}>About</a>
           <a href="https://github.com/">GitHub</a>
         </div>
