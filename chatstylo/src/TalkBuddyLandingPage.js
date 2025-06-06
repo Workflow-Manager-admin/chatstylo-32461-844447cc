@@ -182,8 +182,7 @@ function TalkBuddyLandingPage() {
       <style>{`
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Montserrat:wght@600&family=Raleway:wght@700&display=swap');
 .tb-landing-root {
-  min-height: 100vh;
-  width: 100vw;
+  /* Removed min-height: 100vh and width: 100vw to allow flow below landing */
   position: relative;
   z-index: 0;
   overflow-x: hidden;
