@@ -245,26 +245,51 @@ function TalkBuddyLandingPage() {
   align-items: flex-start;
   max-width: 484px;
 }
+/* Headline without background/gradient: solid color, max contrast, sharp text shadow for readability. */
 .tb-hero-title {
   margin: 0 0 8px 0;
-  font-size: 2.8rem;
-  font-weight: 800;
+  font-size: 3.2rem;
+  font-weight: 900;
   font-family: 'Poppins', 'Raleway', Arial, sans-serif;
   letter-spacing: 0.01em;
-  line-height: 1.1;
-  background: linear-gradient(94deg,#35529b 40%, #005c98 80%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  transition: background .6s;
+  line-height: 1.08;
+  color: #18395e;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  /* Add strong contrasting shadow for both light/dark */
+  text-shadow:
+    0 2.5px 16px rgba(26,33,70,0.18),
+    0 1.5px 0 #fff,
+    0 2.5px 8px #31468430,
+    0 6px 32px #10356722,
+    0 1px 1.5px #bfe8fe55;
+  transition: color .4s, text-shadow .4s, font-size .2s;
 }
+/* Force readability in both themes */
 .tb-landing-root.light .tb-hero-title {
-  background: linear-gradient(84deg, #2165a4 11%, #43c4ff 80%);
+  color: #114e82;
+  text-shadow:
+    0 2px 16px #BEE8FFbb,
+    0 1.2px 0 #fff,
+    0 2px 8px #70b7e155,
+    0 0.8px 1.4px #c2cdfd77;
 }
 .tb-landing-root.dark .tb-hero-title {
-  background: linear-gradient(80deg, #d8eaf5 24%, #8ec3db 63%);
+  color: #f7fcff;
+  text-shadow:
+    0 2px 14px #193a57bb,
+    0 0.7px 2.2px #193a575a,
+    0 1.2px 0 #1e242a80,
+    0 0.5px 1.2px #fff6;
 }
+@media (max-width: 650px) {
+  .tb-hero-title { font-size: 2.1rem; }
+}
+@media (max-width: 420px) {
+  .tb-hero-title { font-size: 1.38rem; }
+}
+
 .tb-hero-desc {
   font-size: 1.15rem;
   font-family: 'Montserrat', sans-serif;
